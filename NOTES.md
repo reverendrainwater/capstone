@@ -1,7 +1,5 @@
 # Programmer Notes for YESSViz
 
----
-
 ## Lanks 2 stuff
 - [ncurses howto](http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/index.html) - super simple and easy to follow
 - [ncurses tutorial](http://edlinuxeditor.blogspot.com/p/ncurses-library-tutorial.html) - a little more advanced than the howto
