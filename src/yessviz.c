@@ -2,12 +2,17 @@
 //        AUTHOR. Rev. Taylor R. Rainwater
 // LAST-REVISION. 2017-09-21
 
+// Libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <ncurses.h>
 
+// Headers
+#include "yessviz.h"
+
+// Defined Values
 #define CHARBYTES 1
 
 /**
@@ -37,6 +42,23 @@ char *input_string()
 	str[i] = '\0';
 
 	return str;
+}
+
+// TODO: modify for file input 
+char *input_file(FILE * fp)
+{	char c;
+	char *str;
+	int i = 0;
+
+	str = malloc(CHARBYTES);
+	while((c = getchar()) != '\n' && c != EOF){
+		str[i++] = c;
+		str = realloc(str, i+1);
+	}
+	str[i] = '\0';
+
+	return str;
+	
 }
 
 int main()
