@@ -1,9 +1,9 @@
 //     HEADER-ID. yessviz.
 //        AUTHOR. Rev Taylor R Rainwater (trr).
-// LAST-REVISION. 2017-09-21
+// LAST-REVISION. 2017-10-26
 
 // Define Variables
-#define DUMPLIMIT 256
+#define DUMPLIMIT 256 // limit cycles
 
 /**
  * Cycle
@@ -14,7 +14,7 @@
  */
 struct Cycle {
 	char *Body; // actual text
-}
+} Cycle;
 
 /**
  * Dump

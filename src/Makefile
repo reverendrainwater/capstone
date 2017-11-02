@@ -1,5 +1,5 @@
 CC=gcc
-FLAGS=-Ig -Wall
+FLAGS=-Ig -Wall -lncurses
 
 yessviz: yessviz.c
-	$(CC) $(FLAGS) $< -o yessviz 
+	$(CC) $< -o yessviz $(FLAGS) 
