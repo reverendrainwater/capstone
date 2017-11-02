@@ -101,6 +101,31 @@ int count_difference(char *student, char *instructor)
 }
 
 /**
+ * detect_filetype
+ * args:
+ * char pointer
+ * return: 
+ * char
+ * description:
+ * Takes a filename and detertmines if the
+ * file is idump (i), sdump (s), or an un-
+ * supported filetype (n).
+ */
+char detect_filetype(char *filename)
+{       int i;
+	
+	for (i = 0; i < strlen(filename); i++){
+		// cycle through, find period, determine if s or i type
+		// make this neater
+		if (filename[i] == '.' && (filename[i + 1] == 's' || filename[i + 1] == 'i')){
+			return filename[i + 1];
+		}
+	}
+	return 'n';
+	// this could be more robust and actually look at the whole type
+}
+
+/**
  * main
  * args: 
  * none
@@ -116,9 +141,21 @@ int main(int argc, char *argv[])
 	char *i_file_body;
 	int difference = 0;
 	
+	// detect filetypes
+	char argtype1 = detect_filetype(argv[1]);
+	char argtype2 = detect_filetype(argv[2]);
+
 	// get file bodies
-	s_file_body = input_file(argv[1]);
-	i_file_body = input_file(argv[2]);
+	if (argtype1 == 's' && argtype2 == 'i'){
+		s_file_body = input_file(argv[1]);
+		i_file_body = input_file(argv[2]);	
+	} else if (argtype1 == 'i' && argtype2 == 's'){
+		s_file_body = input_file(argv[2]);
+		i_file_body = input_file(argv[1]);
+	} else { // not the right file types
+		printf("PLEASE PASS ONLY .idump AND .sdump TYPE FILES.\n");
+		return 1;
+	}
 
 	// create ncurses interface
 	initscr();
@@ -127,6 +164,9 @@ int main(int argc, char *argv[])
 	noecho();
 	// get difference count
 	difference = count_difference(s_file_body, i_file_body);
+	printw("%s\n", s_file_body);
+	printw("%s\n", i_file_body);
+	printw("\n-----------\n");
 	attron(A_BOLD);
 	printw("DIFFERENCE COUNT: %i\n", difference);
 	attroff(A_BOLD);
