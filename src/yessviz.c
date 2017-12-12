@@ -47,34 +47,34 @@ char *input_string()
 /**
  * input file
  * args: 
- * char pointer
+ * char pointer, Dump pointer
  * returns: 
- * char pointer
+ * none
  * description:
  * When called with a file name passed,
  * it opens a file in read mode. Once open
  * the function reads the file into a char
  * array then returns the array to the caller. 
  */
-char *input_file(char *filename)
+void input_file(char *filename, Dump *dump)
 {	FILE *fp;
 	char *str;
 
 	// open file
-	fp = fopen(filename, "r");
+	//fp = fopen(filename, "r");
 	// determine file size
-	fseek(fp, 0, SEEK_END);
-	long fsize = ftell(fp);
-	rewind(fp);
+	//fseek(fp, 0, SEEK_END);
+	//long fsize = ftell(fp);
+	//rewind(fp);
 	// allocate size
-	str = malloc(fsize);
+	//str = malloc(fsize);
 	// read file
-	fread(str, fsize, 1, fp);
+	//fread(str, fsize, 1, fp);
 	// terminate string properly
-	str[fsize] = '\0';
+	//str[fsize] = '\0';
 	// close file, return string
-	fclose(fp);
-	return str;	
+	//fclose(fp);
+	//return str;	
 }
 
 /**
@@ -137,8 +137,8 @@ char detect_filetype(char *filename)
  * program. 
  */
 int main(int argc, char *argv[])
-{	char *s_file_body;
-	char *i_file_body;
+{	Dump *s_file_body;
+	Dump *i_file_body;
 	int difference = 0;
 	
 	// detect filetypes
